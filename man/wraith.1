@@ -1,0 +1,142 @@
+.TH WRAITH 1 "April 2026" "wraith 1.0.0" "User Commands"
+
+.SH NAME
+wraith \- silent network threat detection and host enumeration
+
+.SH SYNOPSIS
+.B wraith
+[\fIcommand\fR] [\fItarget\fR] [\fIoptions\fR]
+
+.SH DESCRIPTION
+.B wraith
+is a passive-first network threat scanner that combines host discovery,
+port enumeration, and CVE signature matching into a single zero-dependency binary.
+It is designed for security engineers and sysadmins who need fast, low-noise
+visibility into what's running on a local or remote network segment.
+
+wraith uses a layered probe strategy: ARP sweep for host discovery,
+TCP SYN scanning for port enumeration, and offline CVE database matching
+for threat classification \(em without sending a single packet to external infrastructure.
+
+.SH COMMANDS
+
+.TP
+.B scan \fI[target]\fR
+Scan a host or CIDR range. Performs host discovery followed by port scanning
+and threat analysis. Target defaults to \fB192.168.1.0/24\fR if not specified.
+
+.TP
+.B probe \fI[target]\fR
+Deep port probe with service version fingerprinting. Slower than scan but
+produces more detailed service identification data.
+
+.TP
+.B monitor
+Passive continuous monitoring mode. Listens on all active interfaces for
+anomalous traffic patterns and new host appearances. Runs indefinitely
+until interrupted with SIGINT (Ctrl+C).
+
+.TP
+.B help
+Display usage information.
+
+.TP
+.B version
+Print version and build metadata.
+
+.SH OPTIONS
+
+.TP
+.BR \-s ", " \-\-stealth
+Enable stealth mode. Increases probe intervals and randomizes packet timing
+to reduce detection likelihood by IDS/IPS systems. Significantly slower.
+
+.TP
+.BR \-V ", " \-\-verbose
+Verbose output. Prints raw probe results and intermediate state during scanning.
+
+.TP
+.BR \-t ", " \-\-timeout " \fIms\fR"
+Probe timeout in milliseconds. Default: \fB3000\fR. Lower values speed up scans
+on reliable networks; increase for high-latency or unreliable links.
+
+.TP
+.BR \-p ", " \-\-ports " \fIrange\fR"
+Port range to scan. Accepts:
+.RS
+.IP \(bu 4
+\fBcommon\fR \(em top 1000 ports by prevalence (default)
+.IP \(bu 4
+\fBall\fR \(em all 65535 ports
+.IP \(bu 4
+\fB80,443,8080\fR \(em comma-separated explicit list
+.IP \(bu 4
+\fB1-1024\fR \(em hyphen-delimited range
+.RE
+
+.TP
+.BR \-o ", " \-\-output " \fIfile\fR"
+Write scan results to \fIfile\fR in structured text format.
+
+.SH EXAMPLES
+
+Scan the default local subnet:
+.RS
+.B wraith scan
+.RE
+
+Scan a specific CIDR range:
+.RS
+.B wraith scan 10.0.0.0/24
+.RE
+
+Deep probe a single host with all ports:
+.RS
+.B wraith probe 192.168.1.1 --ports all --verbose
+.RE
+
+Stealth scan with extended timeout:
+.RS
+.B wraith scan 192.168.1.1 --stealth --timeout 5000
+.RE
+
+Continuous passive monitoring:
+.RS
+.B wraith monitor
+.RE
+
+.SH EXIT STATUS
+
+.TP
+.B 0
+Success.
+
+.TP
+.B 1
+Error (argument parsing failure, permission denied, etc.).
+
+.SH FILES
+
+.TP
+.I ~/.config/wraith/config.toml
+Optional user configuration file. Overrides compiled defaults for timeout,
+preferred port ranges, and output formatting.
+
+.SH NOTES
+wraith requires no root or CAP_NET_RAW privileges for basic host discovery
+on most systems. Full SYN scanning may require elevated privileges depending
+on your OS and network configuration.
+
+wraith does not phone home, collect telemetry, or transmit data outside
+your local network. The CVE signature database is bundled at compile time.
+
+.SH BUGS
+Report bugs at https://github.com/yourhandle/wraith/issues
+
+.SH AUTHOR
+Written as an open source project. See CONTRIBUTORS in the repository.
+
+.SH SEE ALSO
+.BR nmap (1),
+.BR masscan (1),
+.BR arp-scan (1)

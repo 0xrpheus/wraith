@@ -1,0 +1,11 @@
+# zig specific
+.zig-cache/
+zig-out/
+
+# bundles and archives
+*.tar.gz
+wraith-macos-*
+wraith-linux-*
+
+# operating system junk
+.DS_Store
