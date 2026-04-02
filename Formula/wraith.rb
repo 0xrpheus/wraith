@@ -30,7 +30,7 @@ class Wraith < Formula
     # this finds the 'wraith' binary you put in the tar
     # and installs it into the homebrew bin folder correctly
     bin.install "wraith"
-    man1.install "wraith.1"
+    man1.install "man/wraith.1"
   end
 
   test do
