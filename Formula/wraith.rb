@@ -7,22 +7,22 @@ class Wraith < Formula
   on_macos do
     on_arm do
       url "https://github.com/0xrpheus/wraith/releases/download/v1.0.0/wraith-macos-aarch64.tar.gz"
-      sha256 "052fe180b62041443b76ca6676a5e75c9ba02774c46a4ca6777192dd0b43d52e"
+      sha256 "7982d3cc541b461a893b1dd270f750d0445e9cc6ea797689c8604ae5866a081e"
     end
     on_intel do
       url "https://github.com/0xrpheus/wraith/releases/download/v1.0.0/wraith-macos-x86_64.tar.gz"
-      sha256 "66956b1073f3ad1a8c842df90979cef965a11bd19292dd8f6fe6bcd09bf002b4"
+      sha256 "6ce407249453be861b43b03a68a782b1bd396657d564cf1ed305ebc6a36bcafd"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/0xrpheus/wraith/releases/download/v1.0.0/wraith-linux-aarch64.tar.gz"
-      sha256 "66f04b4375025f9f3dc62dd52a829c40bd801f1a951aa89c585f928f9ac52a9e"
+      sha256 "40ede9272e562a41336fac150ad7dda949473c2894c76d1b638ada54c7e465e0"
     end
     on_intel do
       url "https://github.com/0xrpheus/wraith/releases/download/v1.0.0/wraith-linux-x86_64.tar.gz"
-      sha256 "e325e069a7aa5e22f4232e360e3a0cd1c1b5c32ceb4f8cb38592f47bcd358f08"
+      sha256 "d0dd7b655706479daacd4f6c52797dcfc99f7c6944a30e469e5e2b9511af4e89"
     end
   end
 
