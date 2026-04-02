@@ -2,7 +2,7 @@
 
 > silent network threat detection. it sees what you don't.
 
-[![build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/yourhandle/wraith)
+[![build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/0xrpheus/wraith)
 [![zig](https://img.shields.io/badge/zig-0.13.0-orange)](https://ziglang.org)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-lightgrey)](https://github.com/0xrpheus/wraith/releases)
@@ -17,7 +17,7 @@ Built for security engineers who want signal without noise.
 
 **homebrew (macOS / Linux)**
 ```sh
-brew tap 0xrpheus/wraith
+brew tap 0xrpheus/wraith https://github.com/0xrpheus/wraith/
 brew install wraith
 ```
 
