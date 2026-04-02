@@ -27,10 +27,9 @@ class Wraith < Formula
   end
 
   def install
-    # this detects which file exists in the extracted archive
-    binary_name = OS.mac? ? "wraith-macos-#{Hardware::CPU.arch}" : "wraith-linux-#{Hardware::CPU.arch}"
-    # then renames it to 'wraith' during the install into the bin folder
-    bin.install binary_name => "wraith"
+    # this finds the 'wraith' binary you put in the tar
+    # and installs it into the homebrew bin folder correctly
+    bin.install "wraith"
     man1.install "wraith.1"
   end
 
