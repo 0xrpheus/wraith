@@ -6,6 +6,8 @@ zig-out/
 *.tar.gz
 wraith-macos-*
 wraith-linux-*
+wraith-windows-*
+releases/
 
 # operating system junk
 .DS_Store
